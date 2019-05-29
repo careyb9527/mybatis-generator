@@ -1,0 +1,43 @@
+package com.youngbankcn.jrs.model;
+
+public class User {
+    private Long uid;
+
+    private Byte type;
+
+    private Byte gender;
+
+    private String nick;
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
+
+    public Byte getType() {
+        return type;
+    }
+
+    public void setType(Byte type) {
+        this.type = type;
+    }
+
+    public Byte getGender() {
+        return gender;
+    }
+
+    public void setGender(Byte gender) {
+        this.gender = gender;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick == null ? null : nick.trim();
+    }
+}

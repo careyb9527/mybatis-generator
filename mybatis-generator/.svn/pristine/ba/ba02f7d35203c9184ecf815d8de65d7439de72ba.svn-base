@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tbl_biz_user" >
+  <resultMap id="BaseResultMap" type="com.youngbankcn.jrs.model.User" >
+    <id column="uid" property="uid" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="nick" property="nick" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uid, type, gender, nick
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_biz_user
+    where uid = #{uid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tbl_biz_user
+    where uid = #{uid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.youngbankcn.jrs.model.User" >
+    insert into tbl_biz_user (uid, type, gender, 
+      nick)
+    values (#{uid,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, #{gender,jdbcType=TINYINT}, 
+      #{nick,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youngbankcn.jrs.model.User" >
+    insert into tbl_biz_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="nick != null" >
+        nick,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="nick != null" >
+        #{nick,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youngbankcn.jrs.model.User" >
+    update tbl_biz_user
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="nick != null" >
+        nick = #{nick,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youngbankcn.jrs.model.User" >
+    update tbl_biz_user
+    set type = #{type,jdbcType=TINYINT},
+      gender = #{gender,jdbcType=TINYINT},
+      nick = #{nick,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+</mapper>
